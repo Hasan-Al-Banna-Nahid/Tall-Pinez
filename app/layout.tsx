@@ -1,14 +1,12 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import { Quicksand } from "next/font/google"
 
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
+const fontMono = Quicksand({
   subsets: ["latin"],
   variable: "--font-mono",
+  weight: ["400", "500", "600", "700"],
 })
 
 export default function RootLayout({
@@ -20,11 +18,9 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
+      className={cn("antialiased", fontMono.className)}
     >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
