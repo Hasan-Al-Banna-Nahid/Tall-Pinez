@@ -10,7 +10,6 @@ const BookingForm = () => {
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState("")
 
-  // সব ডাটা এই একটি স্টেটেই থাকবে যা UI এবং LS উভয়কে কন্ট্রোল করবে
   const [formData, setFormData] = useState({
     type: "CPA" as FormType,
     name: "",
@@ -20,7 +19,6 @@ const BookingForm = () => {
     message: "",
   })
 
-  // ১. পেজ লোড হলে Local Storage থেকে ডাটা আনা
   useEffect(() => {
     const savedData = localStorage.getItem("tallpines_draft")
     if (savedData) {
@@ -34,7 +32,6 @@ const BookingForm = () => {
     }
   }, [])
 
-  // ২. ইনপুট চেঞ্জ হ্যান্ডলার (টাইপিং এবং অটো-সেভ একসাথে)
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -42,13 +39,10 @@ const BookingForm = () => {
   ) => {
     const { name, value } = e.target
 
-    // নতুন ডাটা অবজেক্ট তৈরি
     const updatedData = { ...formData, [name]: value }
 
-    // স্টেট আপডেট (যাতে UI তে দেখা যায়)
     setFormData(updatedData)
 
-    // লোকাল স্টোরেজ আপডেট
     localStorage.setItem("tallpines_draft", JSON.stringify(updatedData))
 
     console.log(`LOG: Typing ${name} -> ${value}`)
