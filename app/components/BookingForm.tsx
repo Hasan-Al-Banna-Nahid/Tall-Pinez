@@ -56,17 +56,14 @@ const BookingForm = () => {
     console.log("LOG: Submitting to n8n:", formData)
 
     try {
-      const response = await fetch(
-        "http://n8n-simplifai.saavatar.xyz/webhook/6cc2d09b-017e-401e-9f18-6373c7e043ae",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...formData,
-            submittedAt: new Date().toISOString(),
-          }),
-        }
-      )
+      const response = await fetch("/api/n8n-proxy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          submittedAt: new Date().toISOString(),
+        }),
+      })
 
       if (response.ok) {
         setSubmitted(true)
