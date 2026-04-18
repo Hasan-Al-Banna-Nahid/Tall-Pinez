@@ -130,9 +130,6 @@ export default function TallPinzePortal() {
               Referral Platform
             </p>
           </div>
-          <button className="flex items-center gap-2 text-xs font-medium text-gray-400 transition-colors hover:text-white">
-            <ArrowLeft className="h-4 w-4" /> Back to Directory
-          </button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-8 md:p-12">
